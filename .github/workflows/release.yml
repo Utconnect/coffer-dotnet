@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Config git
+        run: |
+          git config --global user.email "snowflower1408@gmail.com"
+          git config --global user.name "Release workflow"
+
+      - name: Release new version
+        run: npx --yes commit-and-tag-version -a
+
+      - name: Push new version
+        run: |
+          git push --follow-tags origin master
