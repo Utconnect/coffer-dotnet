@@ -24,8 +24,14 @@ jobs:
           git config --global user.name "Release workflow"
 
       - name: Release new version
-        run: npx --yes commit-and-tag-version -a
+        shell: bash {0}
+        run: >
+          npx --yes commit-and-tag-version -a
+          --packageFiles
+          ./src/Coffer/Coffer.csproj
+          --bumpFiles
+          ./src/Coffer/Coffer.csproj
 
       - name: Push new version
         run: |
-          git push --follow-tags origin master
+          git push --follow-tags origin main
