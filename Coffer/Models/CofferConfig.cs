@@ -1,8 +1,9 @@
 ﻿using Utconnect.Common.Configurations.Models;
 
-namespace Utconnect.Coffer.Models;
-
-public class CofferConfig : ISiteConfig
+namespace Utconnect.Coffer.Models
 {
-    public string Url { get; set; } = default!;
+    public class CofferConfig : ISiteConfig
+    {
+        public string Url { get; set; } = default!;
+    }
 }

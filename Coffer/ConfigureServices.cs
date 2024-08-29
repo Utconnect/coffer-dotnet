@@ -1,28 +1,30 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Utconnect.Coffer.Models;
 using Utconnect.Coffer.Services.Abstract;
 using Utconnect.Coffer.Services.Implementations;
 using Utconnect.Common.Configurations;
 
-namespace Utconnect.Coffer;
-
-public static class ConfigureServices
+namespace Utconnect.Coffer
 {
-    public static void AddCoffer(
-        this IServiceCollection services,
-        IConfiguration configuration,
-        string? configurationPath = null)
+    public static class ConfigureServices
     {
-        services.AddConfiguration<CofferConfig>(configuration, configurationPath);
-        services.AddHttpClient<ICofferService, CofferService>(configureClient =>
+        public static void AddCoffer(
+            this IServiceCollection services,
+            IConfiguration configuration,
+            string? configurationPath = null)
         {
-            string? configPath = configuration.GetSection(configurationPath ?? nameof(CofferConfig)).Value;
-            if (configPath != null)
+            services.AddConfiguration<CofferConfig>(configuration, configurationPath);
+            services.AddHttpClient<ICofferService, CofferService>(configureClient =>
             {
-                configureClient.BaseAddress = new Uri(configPath);
-            }
-        });
-        services.AddTransient<ICofferService, CofferService>();
+                string? configPath = configuration.GetSection(configurationPath ?? nameof(CofferConfig)).Value;
+                if (configPath != null)
+                {
+                    configureClient.BaseAddress = new Uri(configPath);
+                }
+            });
+            services.AddTransient<ICofferService, CofferService>();
+        }
     }
 }

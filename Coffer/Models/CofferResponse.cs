@@ -1,6 +1,7 @@
-﻿namespace Utconnect.Coffer.Models;
-
-public class CofferResponse
+﻿namespace Utconnect.Coffer.Models
 {
-    public string Data { get; set; } = default!;
+    public class CofferResponse
+    {
+        public string Data { get; set; } = default!;
+    }
 }
