@@ -36,8 +36,5 @@
       "type": "test",
       "hidden": true
     }
-  ],
-  "scripts": {
-    "prerelease": "./.ci/sonar-properties.sh"
-  }
+  ]
 }
