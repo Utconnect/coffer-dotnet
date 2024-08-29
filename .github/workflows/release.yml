@@ -28,9 +28,9 @@ jobs:
         run: >
           npx --yes commit-and-tag-version -a
           --packageFiles
-          ./src/Coffer/Coffer.csproj
+          ./Coffer/Coffer.csproj
           --bumpFiles
-          ./src/Coffer/Coffer.csproj
+          ./Coffer/Coffer.csproj
 
       - name: Push new version
         run: |
