@@ -10,8 +10,7 @@ using Utconnect.Common.Models.Errors;
 
 namespace Utconnect.Coffer.Services.Implementations
 {
-    public class CofferService
-        : ICofferService
+    public class CofferService : ICofferService
     {
         private readonly IHttpClientFactory _clientFactory;
         private readonly IOptions<CofferConfig> _config;
