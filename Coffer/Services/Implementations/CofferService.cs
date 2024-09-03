@@ -44,7 +44,7 @@ namespace Utconnect.Coffer.Services.Implementations
                 string content = await response.Content.ReadAsStringAsync();
                 CofferResponse? jwtKey = JsonConvert.DeserializeObject<CofferResponse>(content);
                 return jwtKey != null
-                    ? Result<string>.Succeed(jwtKey.Data)
+                    ? Result.Succeed(jwtKey.Data)
                     : Result<string>.Failure(new InternalServerError("Retrieved data is null"));
             }
             catch (Exception)
